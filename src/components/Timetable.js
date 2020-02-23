@@ -1,78 +1,63 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Table, Dropdown } from 'semantic-ui-react'
-import service from '../Services/Service'
+import { Query } from 'react-apollo'
+import { Table, Message } from 'semantic-ui-react'
+import { TIMETABLE_OF_NEAREST } from '../query'
+import service from '../service'
 import Option from './Option'
+import { formatResult } from '../util'
 
 const Timetable = ({ address }) => {
-  const [timetable, setTimetable] = useState([])
-  const [timeRange, setTimeRange] = useState(1)
-
-  const fetchTimeTable = async() => {
-    const timetable = await service.getTimeTable(address, timeRange)
-    setTimetable(timetable)
-  }
+  const [lon, setLon] = useState(0)
+  const [lat, setLat] = useState(0)
+  const [visible, setVisible] = useState(true)
 
   useEffect(() => {
-    fetchTimeTable()
-    const interval = setInterval(async () => {
-      // fetch new time table every one minute
-      fetchTimeTable()
-    }, 60000)
-    return () => clearInterval(interval)
-  }, [timeRange])
-
-  if(timetable.length===0){
-    return (
-      <div>
-        No available transportation
-      </div>
-    )
-  }
-
-  /**
-   * Create dropdown options with range from 1 to 5
-   */
-  const createTimeOptions = () => {
-    let timeOptions = []
-    for(let i=1; i<9; i++){
-      timeOptions.push({
-        key: i,
-        text: i ===1 ? '1 hour' : `${i} hours`,
-        value: i
-      })
+    // get longitude and latitude of the address
+    const getCoordinates = async() => {
+      const { lon,lat }= await service.getLocation(address)
+      setLon(lon)
+      setLat(lat)
     }
-    return timeOptions
-  }
-
-  const handleDropdownChange = (e, { value }) => {
-    setTimeRange(value)
-  }
+    getCoordinates()
+  },[address])
 
   return (
-    <div>
-      <h1>Timetable of Public Transportation from Eficode Headquarter</h1>
-      <div>Show transportation which will leave within <span></span>
-        <Dropdown id='timeRange' inline options={createTimeOptions()} defaultValue={1} onChange={handleDropdownChange}/>
-      </div>
-      <Table id='timeTable' basic='very' celled collapsing style={{ marginLeft:'auto', marginRight:'auto', marginTop:'70px' }}>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Route</Table.HeaderCell>
-            <Table.HeaderCell>Stop</Table.HeaderCell>
-            <Table.HeaderCell>Distance (m)</Table.HeaderCell>
-            <Table.HeaderCell>Leaves</Table.HeaderCell>
-            <Table.HeaderCell>Destination</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+    <Query query={TIMETABLE_OF_NEAREST} variables={{ lon, lat }} pollInterval={60000}>
+      {({ loading, error, data }) => {
+        if(loading) return null
+        if(error) return (
+          <p>Something wrong happened... {error}</p>
+        )
+        return (
+          <div>
+            <h1>Timetable of Public Transportation from Eficode Headquarter</h1>
+            {visible&&
+            <Message onDismiss={() => setVisible(false)} id='infoMessage'>
+              This info screen is showing lines which will leave in a short time
+            </Message>}
+            <Table id='timeTable' basic='very' celled collapsing style={{ marginLeft:'auto', marginRight:'auto', marginTop:'70px' }}>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Line</Table.HeaderCell>
+                  <Table.HeaderCell>Stop</Table.HeaderCell>
+                  <Table.HeaderCell>Distance (m) to the stop</Table.HeaderCell>
+                  <Table.HeaderCell>Leaves</Table.HeaderCell>
+                  <Table.HeaderCell>Destination</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
 
-        <Table.Body>
-          {timetable.map(option => (
-            <Option option={option} key={`${option.route}/${option.leaves}/${option.destination}`}/>
-          ))}
-        </Table.Body>
-      </Table>
-    </div>
+              <Table.Body>
+                {formatResult(data.nearest.edges).map(option => (
+                  <Option option={option} key={`${option.line}/${option.leaves}/${option.destination}`}/>
+                ))}
+              </Table.Body>
+            </Table>
+          </div>
+        )
+
+      }}
+    </Query>
   )
 }
 

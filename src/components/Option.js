@@ -6,7 +6,7 @@ const Option = ({ option }) => {
   return (
     <Table.Row >
       <Table.Cell>
-        <h4>{option.route} <span>({`${option.mode.toLowerCase()}`})</span></h4>
+        <h4>{option.line} <span>({`${option.mode.toLowerCase()}`})</span></h4>
       </Table.Cell>
       <Table.Cell>
         {option.stop}
