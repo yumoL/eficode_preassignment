@@ -16,6 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "rbt_test": "robot -d ./tests/Results ./tests/Tests",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ."
