@@ -16,6 +16,7 @@ const Timetable = ({ address }) => {
   useEffect(() => {
     fetchTimeTable()
     const interval = setInterval(async () => {
+      // fetch new time table every one minute
       fetchTimeTable()
     }, 60000)
     return () => clearInterval(interval)
@@ -34,7 +35,7 @@ const Timetable = ({ address }) => {
    */
   const createTimeOptions = () => {
     let timeOptions = []
-    for(let i=1; i<6; i++){
+    for(let i=1; i<9; i++){
       timeOptions.push({
         key: i,
         text: i ===1 ? '1 hour' : `${i} hours`,
@@ -52,9 +53,9 @@ const Timetable = ({ address }) => {
     <div>
       <h1>Timetable of Public Transportation from Eficode Headquarter</h1>
       <div>Show transportation which will leave within <span></span>
-        <Dropdown inline options={createTimeOptions()} defaultValue={1} onChange={handleDropdownChange}/>
+        <Dropdown id='timeRange' inline options={createTimeOptions()} defaultValue={1} onChange={handleDropdownChange}/>
       </div>
-      <Table basic='very' celled collapsing style={{ marginLeft:'auto', marginRight:'auto', marginTop:'70px' }}>
+      <Table id='timeTable' basic='very' celled collapsing style={{ marginLeft:'auto', marginRight:'auto', marginTop:'70px' }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Route</Table.HeaderCell>
