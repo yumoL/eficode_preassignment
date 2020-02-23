@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.7.1 on linux)" generated="20200223 02:16:57.184" rpa="false">
+<suite id="s1" name="Tests" source="/home/local/luoyumo/Desktop/eficode_preassignment/tests/Tests">
+<suite id="s1-s1" name="TimeTable" source="/home/local/luoyumo/Desktop/eficode_preassignment/tests/Tests/TimeTable.robot">
+<test id="s1-s1-t1" name="App should be able to show nearby stops">
+<kw name="Begin Web Test" library="Common" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>chrome</arg>
+</arguments>
+<msg timestamp="20200223 02:16:57.334" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200223 02:16:57.334" endtime="20200223 02:16:57.902"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:57.333" endtime="20200223 02:16:57.902"></status>
+</kw>
+<kw name="Go to main page" library="TimetableApp">
+<kw name="Load" library="LandingPage">
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${START_URL}</arg>
+</arguments>
+<msg timestamp="20200223 02:16:57.906" level="INFO">Opening url 'http://localhost:3000'</msg>
+<status status="PASS" starttime="20200223 02:16:57.906" endtime="20200223 02:16:58.626"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:57.905" endtime="20200223 02:16:58.626"></status>
+</kw>
+<kw name="Verify Page Loaded" library="LandingPage">
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Timetable of Public Transportation from Eficode Headquarter</arg>
+</arguments>
+<status status="PASS" starttime="20200223 02:16:58.627" endtime="20200223 02:16:58.936"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:58.627" endtime="20200223 02:16:58.937"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:57.904" endtime="20200223 02:16:58.937"></status>
+</kw>
+<kw name="Show a nearby stop" library="TimetableApp">
+<arguments>
+<arg>Kauppakorkeakoulut</arg>
+</arguments>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<doc>Verifies that current page contains ``text``.</doc>
+<arguments>
+<arg>${STOP}</arg>
+</arguments>
+<msg timestamp="20200223 02:16:58.963" level="INFO">Current page contains text 'Kauppakorkeakoulut'.</msg>
+<status status="PASS" starttime="20200223 02:16:58.938" endtime="20200223 02:16:58.964"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:58.937" endtime="20200223 02:16:58.964"></status>
+</kw>
+<kw name="Show a nearby stop" library="TimetableApp">
+<arguments>
+<arg>Fredrikinkatu</arg>
+</arguments>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<doc>Verifies that current page contains ``text``.</doc>
+<arguments>
+<arg>${STOP}</arg>
+</arguments>
+<msg timestamp="20200223 02:16:58.985" level="INFO">Current page contains text 'Fredrikinkatu'.</msg>
+<status status="PASS" starttime="20200223 02:16:58.964" endtime="20200223 02:16:58.985"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:58.964" endtime="20200223 02:16:58.986"></status>
+</kw>
+<kw name="End Web Test" library="Common" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200223 02:16:58.986" endtime="20200223 02:16:59.058"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:58.986" endtime="20200223 02:16:59.058"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:57.333" endtime="20200223 02:16:59.059" critical="yes"></status>
+</test>
+<test id="s1-s1-t2" name="User should be able to choose time range within which transportation will leave">
+<kw name="Begin Web Test" library="Common" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>chrome</arg>
+</arguments>
+<msg timestamp="20200223 02:16:59.072" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20200223 02:16:59.069" endtime="20200223 02:17:00.589"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:59.063" endtime="20200223 02:17:00.589"></status>
+</kw>
+<kw name="Go to main page" library="TimetableApp">
+<kw name="Load" library="LandingPage">
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${START_URL}</arg>
+</arguments>
+<msg timestamp="20200223 02:17:00.592" level="INFO">Opening url 'http://localhost:3000'</msg>
+<status status="PASS" starttime="20200223 02:17:00.591" endtime="20200223 02:17:01.249"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:17:00.591" endtime="20200223 02:17:01.249"></status>
+</kw>
+<kw name="Verify Page Loaded" library="LandingPage">
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Timetable of Public Transportation from Eficode Headquarter</arg>
+</arguments>
+<status status="PASS" starttime="20200223 02:17:01.249" endtime="20200223 02:17:01.555"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:17:01.249" endtime="20200223 02:17:01.556"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:17:00.590" endtime="20200223 02:17:01.556"></status>
+</kw>
+<kw name="Choose time range from dropdown" library="TimetableApp">
+<arguments>
+<arg>${TIME_RANGE_8}</arg>
+</arguments>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<arguments>
+<arg>${TIME_RANGE_DROPDOWN}</arg>
+</arguments>
+<msg timestamp="20200223 02:17:01.576" level="INFO">Current page contains element 'id=timeRange'.</msg>
+<status status="PASS" starttime="20200223 02:17:01.556" endtime="20200223 02:17:01.576"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${TIME_RANGE_DROPDOWN}</arg>
+</arguments>
+<msg timestamp="20200223 02:17:01.576" level="INFO">Clicking element 'id=timeRange'.</msg>
+<status status="PASS" starttime="20200223 02:17:01.576" endtime="20200223 02:17:01.654"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${TIME_RANGE}</arg>
+</arguments>
+<msg timestamp="20200223 02:17:01.655" level="INFO">Clicking element 'xpath=//*[@id="timeRange"]/div[2]/div[8]'.</msg>
+<status status="PASS" starttime="20200223 02:17:01.654" endtime="20200223 02:17:01.741"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:17:01.556" endtime="20200223 02:17:01.741"></status>
+</kw>
+<kw name="Should contain routes whose departure time is more than an hour" library="TimetableApp">
+<kw name="Wait Until Element Contains" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<arguments>
+<arg>${TIME_TABLE}</arg>
+<arg>:</arg>
+</arguments>
+<status status="PASS" starttime="20200223 02:17:01.742" endtime="20200223 02:17:02.095"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:17:01.741" endtime="20200223 02:17:02.095"></status>
+</kw>
+<kw name="Choose time range from dropdown" library="TimetableApp">
+<arguments>
+<arg>${TIME_RANGE_1}</arg>
+</arguments>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<arguments>
+<arg>${TIME_RANGE_DROPDOWN}</arg>
+</arguments>
+<msg timestamp="20200223 02:17:02.103" level="INFO">Current page contains element 'id=timeRange'.</msg>
+<status status="PASS" starttime="20200223 02:17:02.096" endtime="20200223 02:17:02.103"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${TIME_RANGE_DROPDOWN}</arg>
+</arguments>
+<msg timestamp="20200223 02:17:02.103" level="INFO">Clicking element 'id=timeRange'.</msg>
+<status status="PASS" starttime="20200223 02:17:02.103" endtime="20200223 02:17:02.146"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${TIME_RANGE}</arg>
+</arguments>
+<msg timestamp="20200223 02:17:02.147" level="INFO">Clicking element 'xpath=//*[@id="timeRange"]/div[2]/div[1]'.</msg>
+<status status="PASS" starttime="20200223 02:17:02.146" endtime="20200223 02:17:02.231"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:17:02.095" endtime="20200223 02:17:02.231"></status>
+</kw>
+<kw name="Should only contain routes whose departure time is within an hour" library="TimetableApp">
+<kw name="Wait Until Element Does Not Contain" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` does not contain ``text``.</doc>
+<arguments>
+<arg>${TIME_TABLE}</arg>
+<arg>:</arg>
+</arguments>
+<status status="PASS" starttime="20200223 02:17:02.233" endtime="20200223 02:17:02.567"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:17:02.232" endtime="20200223 02:17:02.568"></status>
+</kw>
+<kw name="End Web Test" library="Common" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200223 02:17:02.568" endtime="20200223 02:17:02.624"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:17:02.568" endtime="20200223 02:17:02.624"></status>
+</kw>
+<status status="PASS" starttime="20200223 02:16:59.061" endtime="20200223 02:17:02.624" critical="yes"></status>
+</test>
+<doc>Test register</doc>
+<status status="PASS" starttime="20200223 02:16:57.204" endtime="20200223 02:17:02.626"></status>
+</suite>
+<status status="PASS" starttime="20200223 02:16:57.186" endtime="20200223 02:17:02.630"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0">Critical Tests</stat>
+<stat pass="2" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" id="s1" name="Tests">Tests</stat>
+<stat pass="2" fail="0" id="s1-s1" name="TimeTable">Tests.TimeTable</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
