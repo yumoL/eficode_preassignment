@@ -1,5 +1,7 @@
-export const TIMETABLE_OF_NEAREST = `
-  query($lat: Float!, $lon: Float!, $timeRange: Int) {
+import { gql } from 'apollo-boost'
+
+export const TIMETABLE_OF_NEAREST = gql`
+  query($lat: Float!, $lon: Float!) {
     nearest(lat: $lat, lon: $lon, maxDistance: 500, filterByPlaceTypes: DEPARTURE_ROW) {
       edges {
         node {
@@ -8,7 +10,7 @@ export const TIMETABLE_OF_NEAREST = `
               stop {
                 name
               }
-              stoptimes(timeRange: $timeRange) {
+              stoptimes(timeRange:7200) {
                 serviceDay
                 realtimeDeparture
                 trip {
